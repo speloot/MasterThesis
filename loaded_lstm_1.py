@@ -17,8 +17,8 @@ np.random.seed(seed)
 
 # Network Parameters
 nNeurons = 25	# number of hidden neurons
-nEpoch = 15		# Max. number of Epochs
-sBatch = 1 		# Batch Size
+nEpoch   = 15		# Max. number of Epochs
+sBatch   = 1 		# Batch Size
 
 #-------------result_fileName------------------------------------------
 modelName	 = "lstm_nadam"
