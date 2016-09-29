@@ -103,19 +103,19 @@ print('Training the model...')
 checkpointer = ModelCheckpoint(weightPath, verbose=2, save_best_only=True)
 
 history = model.fit(X_train, Y_train,
-                    nb_epoch=nEpoch,
-                    batch_size=sBatch,
+                    nb_epoch        = nEpoch,
+                    batch_size      = sBatch,
                     validation_data = (X_valid, Y_valid),
-                    shuffle=True,   # shuffle after each Epoch!
-                    callbacks = [checkpointer]
+                    shuffle         = True,   # shuffle after each Epoch!
+                    callbacks       = [checkpointer]
 		                )
 # Save the model
 model.save(modelPath  ) 
 # Early Stopping 
-keras.callbacks.EarlyStopping(monitor='val_loss'
-							, patience=1
-							, verbose=1
-							, mode='min')
+keras.callbacks.EarlyStopping(monitor  = 'val_loss',
+			      patience = 1,
+			      verbose  = 1,
+	   		      mode     = 'min')
 
 
 #------------------Evaluate The Model--------------------------------------
@@ -125,10 +125,10 @@ score = model.evaluate(X_valid, Y_valid, batch_size = sBatch)
 
 #-------------------Model Config & Summary---------------------------------
 modelSummary = model.summary()
-modelConfig = model.get_config()
+modelConfig  = model.get_config()
 
 #----------------------Track time!-----------------------------------------
-elapsedTime = (time.time()-tic) / 60
+elapsedTime  = (time.time()-tic) / 60
 
 # Write results to file
 result_file = open(logPath,"w")
@@ -155,11 +155,11 @@ class LossHistory(keras.callbacks.Callback):
     def on_batch_end(self, batch, logs={}):
         self.losses.append(logs.get('loss'))
 
-def train_valid_split(df, valid_size=0.07513148009016):  # calculated for sBatch=100
+def train_valid_split(df, validSize=0.07513148009016):  # calculated for sBatch=100 otherwise validSize0.1
     """
     This just splits data to training and validating parts
     """
-    ntrn = round(len(df) * (1 - valid_size))
+    ntrn = round(len(df) * (1 - validSize))
 
     X_train = df[0:ntrn,0:4]
     Y_train = df[0:ntrn,4]
